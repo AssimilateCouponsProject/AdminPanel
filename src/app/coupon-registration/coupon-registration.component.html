@@ -1,0 +1,194 @@
+<form #CouponForm="ngForm" ngNativeValidate  (ngSubmit)="CouponSubmit()">
+  <div>
+    <div class="card">
+      <!-- form header -->
+      <div class="card-header">
+        <h3 class="card-title text-center">Coupon Registration</h3>
+      </div>
+      <!-- form body -->
+      <div class="card-body">
+        <div class="form-group">
+
+          <div class="row">
+            <div class="col-md-6">
+              <div>
+                <label for="coupon_provider"><strong>Coupon Provider :</strong></label>
+              </div>
+              <div> <input id="coupon_provider" type="text" class="form-control" name="coupon_provider"
+                  [(ngModel)]="coupon_provider" required coupon_provider #coupon_providerControl="ngModel">
+              </div>
+              <!-- <div class="text-danger">
+            coupon provider not valid
+          </div> -->
+              <div>
+                <span class="help-block text-danger"
+                  *ngIf="coupon_providerControl.touched && coupon_providerControl.invalid">
+                  Coupon Provider Is Required</span>
+                <!-- <span class="help-block" *ngIf="emailControl.errors && emailControl.errors.required && emailControl.touched">Email Address Is Required</span>
+              <span class="help-block" *ngIf="emailControl.errors && emailControl.errors.email && emailControl.touched">Invalid Email Address</span> -->
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div>
+                <label for="coupon_catagory"><strong>Coupon Catagory :</strong></label>
+              </div>
+              <div> <input id="coupon_catagory" type="text" class="form-control" name="coupon_catagory"
+                  [(ngModel)]="coupon_catagory" required coupon_catagory #coupon_catagoryControl="ngModel">
+              </div>
+              <!-- <div class="text-danger">
+              Coupon Catagory not valid
+            </div> -->
+              <div>
+                <span class="help-block text-danger"
+                  *ngIf="coupon_catagoryControl.touched && coupon_catagoryControl.invalid">
+                  Coupon Catagory Is Required</span>
+                <!-- <span class="help-block" *ngIf="emailControl.errors && emailControl.errors.required && emailControl.touched">Email Address Is Required</span>
+                <span class="help-block" *ngIf="emailControl.errors && emailControl.errors.email && emailControl.touched">Invalid Email Address</span> -->
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div>
+                <label for="coupon_subcatagory"><strong>Coupon Subcatagory :</strong></label>
+              </div>
+              <div>
+                <input id="coupon_subcatagory" type="text" class="form-control" name="coupon_subcatagory"
+                  [(ngModel)]="coupon_subcatagory" required coupon_subcatagory #coupon_subcatagoryControl="ngModel">
+              </div>
+              <!-- 
+                  <div class="text-danger">
+                  Coupon Subcatagory not valid
+                  </div> 
+              -->
+              <div>
+                <span class="help-block text-danger"
+                  *ngIf="coupon_subcatagoryControl.touched && coupon_subcatagoryControl.invalid">
+                  Coupon Subcatagory Is Required
+                </span>
+                <!--
+                    <span class="help-block" *ngIf="emailControl.errors && emailControl.errors.required && emailControl.touched">Email Address Is Required</span>
+                    <span class="help-block" *ngIf="emailControl.errors && emailControl.errors.email && emailControl.touched">Invalid Email Address</span>
+                -->
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div>
+                <label for="ImgInp"><strong> Select Image :</strong></label>
+              </div>
+              <div>
+                <input id="ImgInp" type="file" class="form-control" name="fileupload" [(ngModel)]="fileupload" required
+                  fileupload #fileuploadControl="ngModel" accept=".png, .jpg, .jpeg">
+              </div>
+              <div>
+                <span class="help-block text-danger" *ngIf="fileuploadControl.touched && fileuploadControl.invalid">
+                  Image Is Required
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <div>
+                <label for="pubdate"><strong> Publish Date :</strong></label>
+              </div>
+              <div>
+                <input id="pubdate" type="date" class="form-control datepicker" name="pubdate" required
+                  parsley-maxlength="6" placeholder="From Date" [(ngModel)]="pubdate" required pubdate
+                  #pubdateControl="ngModel">
+              </div>
+              <div>
+                <span class="help-block text-danger" *ngIf="pubdateControl.touched && pubdateControl.invalid">
+                  Publish Date Is Required
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div>
+                <label for="expdate"><strong> Expiry Date :</strong></label>
+              </div>
+              <div>
+                <input id="expdate" type="date" class="form-control datepicker" name="expdate" required
+                  parsley-maxlength="4" placeholder="From Date" [(ngModel)]="expdate" required expdate
+                  #expdateControl="ngModel">
+              </div>
+              <div>
+                <span class="help-block text-danger" *ngIf="expdateControl.touched && expdateControl.invalid">
+                  Expiry Date Is Required
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+
+              <div>
+                <label for="Textarea"><strong>Description :</strong> </label>
+              </div>
+              <div>
+                <textarea class="form-control" id="Textarea" name="Textarea" rows="5" required [(ngModel)]="Textarea"
+                  required Textarea #TextareaControl="ngModel"> Describe coupons here </textarea>
+              </div>
+            </div>
+            <div>
+              <span>
+                <span class="help-block text-danger" *ngIf="TextareaControl.touched && TextareaControl.invalid">
+                  Description Is Required
+                </span>
+              </span>
+            </div>
+            
+            <div class="col">
+              <div class="row-md-6">
+                <div>
+                  <label for="regdate"><strong> Registration Date :</strong></label>
+                </div>
+                <div>
+                  <input id="regdate" type="date" class="form-control datepicker" name="regdate" required
+                    parsley-maxlength="4" placeholder="From Date" [(ngModel)]="regdate" required regdate
+                    #regdateControl="ngModel">
+                </div>
+                <div>
+                  <span class="help-block text-danger" *ngIf="regdateControl.touched && regdateControl.invalid">
+                    Registration Date Is Required
+                  </span>
+                </div>
+              </div>
+              <br>
+              <div class="row-md-6">
+                <div>
+                  <label for="locname"> <strong>Location Name : </strong></label>
+                </div>
+                <div>
+                  <input id="locname" name="locname" type="text" class="form-control" [(ngModel)]="locname" required
+                    locname #locnameControl="ngModel">
+                </div>
+                <div>
+                  <span class="help-block text-danger" *ngIf="locnameControl.touched && locnameControl.invalid">
+                    Location Name Is Required
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- form footer -->
+      <div class="card-footer text-center">
+          <button type="submit" [disabled]="!CouponForm.valid" class="btn btn-primary"><strong>Register Coupon</strong> </button>
+        </div>
+    </div>
+  </div>
+</form>

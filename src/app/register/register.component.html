@@ -1,0 +1,198 @@
+<div class="container">
+  <form #regForm="ngForm" ngNativeValidate (ngSubmit)="onSubmit()">
+    <div>
+      <div class="card">
+        <!-- form header -->
+        <div class="card-header">
+          <h3 class="card-title text-center">Registration Form</h3>
+        </div>
+        <!-- form body -->
+        <div class="card-body">
+          <!-- first Name -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group" [class.has-error]="firstNameControl.touched && firstNameControl.invalid"
+                [class.text-danger]="firstNameControl.touched && firstNameControl.invalid"
+                [class.text-success]="firstNameControl.touched && firstNameControl.valid">
+                <label for="firstName"><strong>First Name :</strong></label>
+              </div>
+              <div>
+                <input id="firstName" type="text" class="form-control" name="firstName" [(ngModel)]="firstName" required
+                  firstName #firstNameControl="ngModel">
+              </div>
+              <div>
+                <span class="help-block text-danger" *ngIf="firstNameControl.touched && firstNameControl.invalid">
+                  First Name Is Required
+                </span>
+              </div>
+            </div>
+            <br>
+            <!-- last Name -->
+            <div class="col-md-6">
+              <div class="form-group" [class.has-error]="lastNameControl.touched && lastNameControl.invalid"
+                [class.text-danger]="lastNameControl.touched && lastNameControl.invalid"
+                [class.text-success]="lastNameControl.touched && lastNameControl.valid">
+                <label for="lastName"><strong>Last Name :</strong></label>
+              </div>
+              <div>
+                <input id="lastName" type="text" class="form-control" name="lastName" [(ngModel)]="lastName" required
+                  lastName #lastNameControl="ngModel">
+              </div>
+              <div>
+                <span class="help-block text-danger" *ngIf="lastNameControl.touched && lastNameControl.invalid">
+                  Last Name Is Required
+                </span>
+              </div>
+            </div>
+          </div>
+          <!--Company Name-->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group" [class.has-error]="companyNameControl.touched && companyNameControl.invalid"
+                [class.text-danger]="companyNameControl.touched && companyNameControl.invalid"
+                [class.text-success]="companyNameControl.touched && companyNameControl.valid">
+                <label for="companyName"><strong>Company Name :</strong></label>
+              </div>
+              <div>
+                <input id="companyName" type="text" class="form-control" name="companyName" [(ngModel)]="companyName"
+                  required companyName #companyNameControl="ngModel">
+              </div>
+              <div>
+                <span class="help-block text-danger" *ngIf="companyNameControl.touched && companyNameControl.invalid">
+                  Company Name Is Required
+                </span>
+              </div>
+            </div>
+
+            <!-- email -->
+            <div class="col-md-6">
+              <div class="form-group" [class.has-error]="emailControl.touched && emailControl.invalid"
+                [class.text-danger]="emailControl.touched && emailControl.invalid"
+                [class.text-success]="emailControl.touched && emailControl.valid">
+                <label for="email"><strong>Email :</strong></label>
+              </div>
+              <div>
+                <input id="email" type="email" class="form-control" name="email" [(ngModel)]="email" required email
+                  #emailControl="ngModel" pattern="^([a-z0-9\.-]+)@([a-z0-9-]+).([a-z]{2,6})(.[a-z]{2,6})?$"
+                  [ngModel]="RegularExps.email">
+              </div>
+              <div class="text-danger" *ngIf="emailControl.errors?.pattern">
+                Email not valid
+              </div>
+              <div>
+                <span class="help-block text-danger" *ngIf="emailControl.touched && emailControl.invalid">
+                  Email Address Is Required</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- country code -->
+            <div class="col-md-2">
+              <div class="form-group" [class.hes-error]="mobNoControl.touched && mobNoControl.invalid"
+                [class.text-danger]="mobNoControl.touched && mobNoControl.invalid"
+                [class.text-success]="mobNoControl.touched && mobNoControl.valid">
+                <label for="countryCode"><strong>Code :</strong></label>
+              </div>
+              <div>
+                <select id="countryCode" name="countries" type="text" class="form-control" [(ngModel)]="countryCode"
+                  required countryCode #countryCodeControl="ngModel"
+                  onmousedown="if(this.options.length>3){this.size=3;}" onchange='this.size=0;' onblur="this.size=0;">
+
+                  <option>Country Code</option>
+                  <option *ngFor="let c of countries">{{c.callingCodes}} </option>
+                  <!-- ({{c.name}}) -->
+                </select>
+              </div>
+            </div>
+            <!-- mobile number -->
+            <div class="col-md-4">
+              <div class="form-group" [class.hes-error]="mobNoControl.touched && mobNoControl.invalid"
+                [class.text-danger]="mobNoControl.touched && mobNoControl.invalid"
+                [class.text-success]="mobNoControl.touched && mobNoControl.valid">
+                <label for="mobNo"> <strong>Mobile Number :</strong></label>
+              </div>
+              <div>
+                <input id="mobNo" type="tel" class="form-control" name="mobNo" [(ngModel)]="mobNo" required mobNo
+                  #mobNoControl="ngModel" pattern="^(\d{10}){1}?$" [ngModel]="RegularExps.mobNo">
+                <!-- placeholder="+91-9090909090 or 9090909090" -->
+              </div>
+              <div class="text-danger" *ngIf="mobNoControl.errors?.pattern">
+                mobile Number not valid, Must be 10 digit Number
+              </div>
+              <div>
+                <span class="help-block text-danger" *ngIf="mobNoControl.touched && mobNoControl.invalid">Mobile number
+                  Is Required</span>
+              </div>
+            </div>
+            <!-- Address -->
+            <div class="col-md-6">
+              <div class="form-group" [class.has-error]="addressControl.touched && addressControl.invalid"
+                [class.text-danger]="addressControl.touched && addressControl.invalid"
+                [class.text-success]="addressControl.touched && addressControl.valid">
+                <label for="address"><strong>Address :</strong></label>
+              </div>
+              <div>
+                <input id="address" type="text" class="form-control" name="address" [(ngModel)]="address" required
+                  address #addressControl="ngModel">
+              </div>
+              <div>
+                <span class="help-block text-danger" *ngIf="addressControl.touched && addressControl.invalid">
+                  Address Is Required
+                </span>
+              </div>
+
+            </div>
+          </div>
+          <!-- password -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group" [class.has-error]="passwordControl.touched && passwordControl.invalid"
+                [class.text-danger]="passwordControl.touched && passwordControl.invalid"
+                [class.text-success]="passwordControl.touched && passwordControl.valid">
+                <label for="password"><strong>Password :</strong></label>
+              </div>
+              <div>
+                <input id="password" type="password" class="form-control" name="password" [(ngModel)]="password"
+                  required password #passwordControl="ngModel" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                  [ngModel]="RegularExps.password">
+              </div>
+              <div class="text-danger" *ngIf="passwordControl.errors?.pattern">
+                password not valid, Minimum eight characters, at least one letter and one number
+              </div>
+              <div>
+                <span class="help-block text-danger" *ngIf="passwordControl.touched && passwordControl.invalid">Password
+                  Is Required</span>
+              </div>
+            </div>
+            <!-- confirm password -->
+            <div class="col-md-6">
+              <div class="form-group"
+                [class.has-error]="confirmpasswordControl.touched && confirmpasswordControl.invalid"
+                [class.text-danger]="confirmpasswordControl.touched && confirmpasswordControl.invalid"
+                [class.text-success]="confirmpasswordControl.touched && confirmpasswordControl.valid">
+                <label for="confirmpassword"><strong>Confirm Password :</strong></label>
+              </div>
+              <div>
+                <input id="confirmpassword" type="password" class="form-control" name="confirmpassword"
+                  [(ngModel)]="confirmpassword" required confirmpassword #confirmpasswordControl="ngModel"
+                  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" [ngModel]="RegularExps.confirmpassword">
+              </div>
+              <div class="text-danger" *ngIf="confirmpasswordControl.errors?.pattern">
+                Confirm password not valid, Minimum eight characters, at least one letter and one number
+              </div>
+              <div>
+                <span class="help-block text-danger"
+                  *ngIf="confirmpasswordControl.touched && confirmpasswordControl.invalid">Confirm Password Is
+                  Required</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- form footer -->
+        <div class="card-footer text-center">
+          <button type="submit" [disabled]="!regForm.valid" class="btn btn-primary"><strong>Register </strong></button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

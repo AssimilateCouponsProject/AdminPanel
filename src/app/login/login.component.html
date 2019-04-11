@@ -1,0 +1,74 @@
+<div class="container col-md-6 offset-md-3">
+<form  #logForm="ngForm" ngNativeValidate (ngSubmit)="onSubmit()">
+  <div>
+    <div class="card">
+      <!-- form header -->
+      <div class="card-header">
+        <h3 class="card-title text-center">Login Form</h3>
+      </div>
+      <!-- form body -->
+      <div class="card-body">
+        <div class="form-group" [class.has-error]="emailControl.touched && emailControl.invalid"
+          [class.text-danger]="emailControl.touched && emailControl.invalid"
+          [class.text-success]="emailControl.touched && emailControl.valid">
+          <label for="email"><strong>Email :</strong></label>
+        </div>
+        <div>
+          <input id="email" type="email" class="form-control" name="email"
+            [(ngModel)]="email" required email #emailControl="ngModel"
+            pattern="^([a-z0-9\.-]+)@([a-z0-9-]+).([a-z]{2,6})(.[a-z]{2,6})?$"
+            [ngModel]="RegularExps.email">
+        </div>
+        <div class="text-danger" *ngIf="emailControl.errors?.pattern">
+          Email not valid
+        </div>
+        <div>
+          <span class="help-block text-danger" *ngIf="emailControl.touched && emailControl.invalid">Email Address Is
+            Required</span>
+        </div>
+<br>
+        <div class="form-group" [class.has-error]="passwordControl.touched && passwordControl.invalid"
+          [class.text-danger]="passwordControl.touched && passwordControl.invalid"
+          [class.text-success]="passwordControl.touched && passwordControl.valid">
+          <label for="password"><strong>Password :</strong></label>
+        </div>
+        <div>
+          <input id="password" type="password" class="form-control" name="password"
+          [(ngModel)]="password" required password #passwordControl="ngModel" 
+          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+          [ngModel]="RegularExps.password">
+        </div>
+        <div class="text-danger" *ngIf="passwordControl.errors?.pattern">
+          password not valid, Minimum eight characters, at least one letter and one number
+        </div>
+        <div>
+          <span class="help-block text-danger" *ngIf="passwordControl.touched && passwordControl.invalid">Password Is Required</span>
+        </div>
+      </div>
+      <!-- form footer -->
+      <div class="card-footer text-center">
+        <button type="submit" [disabled]="!logForm.valid" class="btn btn-primary"><strong>Log In </strong></button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+
+
+<!--  regular expression for password validation 
+
+Minimum eight characters, at least one letter and one number:
+
+"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+Minimum eight characters, at least one letter, one number and one special character:
+
+"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:
+
+"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
+
+"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character:
+
+"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$" -->

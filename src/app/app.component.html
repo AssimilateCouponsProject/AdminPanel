@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-secondary">
+  <div class="container">
+    <a routerLink="/login" class="navbar-brand text-warning"><h4><strong>{{ title }}</strong></h4></a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarID">
+      <span class="navbar-toggler-icon"> </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarID">
+      <ul class="navbar-nav text-center ml-auto">
+        <li class="nav-item">
+          <a routerLink="/login" routerLinkActive="active" class="text-warning nav-link"><h6><strong>Login</strong></h6></a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/register" routerLinkActive="active" class="text-warning nav-link"><h6><strong>Register</strong></h6></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<div class="container fixTop">
+  <router-outlet></router-outlet>
+</div>
